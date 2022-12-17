@@ -1,70 +1,73 @@
 // Assignment code here
-// var arrays
-var Lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var Upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var Numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,];
-var Special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"]
+ function generateNewPassword() {
+    var passwordLength;
 
-// if user doesn't choose a number between 8 and 128 then it prompts with pick between these two
-function validateCharsLength (numOfCharacters) {
-  if (numOfCharacters < 8 || numOfCharacters > 128) {
-    confirm("Enter a number of characters between 8 and 128");
-    return generatePassword();
-  } 
-  return numOfCharacters;
-}
-// prompts for user to choose the variables of their password
-function generatePassword() {
-  var characterArray = [];
-  var numOfCharacters = prompt("How many characters would you like your password to be?");
-  validateCharsLength(numOfCharacters);
-  var inclLower = confirm("Do you want to use lower case letters?");
-  var inclUpper = confirm("Do you want to use upper case letters?");
-  var inclNumbers = confirm("Do you want to use numbers?");
-  var inclSpecial = confirm("Do you want to use special characters?");
-  
-  function validateSomeCharsIncl () {
-    if (!inclUpper && !inclLower && !inclNumbers && !inclSpecial) {
-      confirm("Error! Please select at least one character type.");
-      return generatePassword();
-    } 
+  //password requirement between 8-128 chars, not getting this alert when i put in numbers like 4 or 129
+    while(true){
+      passwordLength = prompt("Choose the length of your password between 8 and 128 characters.");
+      passwordLength = parseInt(passwordLength);
+      if (passwordLength >= 8 || passwordLength <= 128){
+        break;
+    } else {
+        alert("Must choose a number between 8 and 128.")
+        generateNewPassword();
+      }
     }
-  validateSomeCharsIncl();
 
-  
-  if (inclLower) {
-    characterArray = characterArray.concat(Lower);
-  }
-  if (inclUpper) {
-    characterArray = characterArray.concat(Upper);
-  }
-  if (inclNumbers) {
-    characterArray = characterArray.concat(Numbers);
-  }
-  if (inclSpecial) {
-    characterArray = characterArray.concat(Special);
-  }
+  //using ok and cancel as yes or no, returns true or false depending on users choice
+    var lowerCase = confirm("Use lower case letters.");
+    var upperCase = confirm("Use upper case letters.");
+    var numbers = confirm("Use numbers, 0-9.");
+    var specialChar = confirm("Use special characters");
 
-  var suggestedPassword = "";
+    var lower = 'abcdefghijklmnopqrstuvwxyz';
+    var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var nums = '0123456789';
+    var special = '!@#$%^&*()-:;_=+,./<>?{}|\\';
 
-  for (var i =0; i < parseInt(numOfCharacters); i++) {
-    var randomIndex = Math.floor(Math.random()*characterArray.length);
-    suggestedPassword += characterArray[randomIndex];
+  //if the user doesnt choose any of the character options then they are reminded and have to start over
+    if (!lowerCase && !upperCase && !numbers && !specialChar){
+      alert('Must choose at least 1 character type to use.')
+      generateNewPassword()
+    }
+
+    var randomChars = [];
+
+  // so this is if a user checked that they want a type of character then it wil go into the random array
+    if (lowerCase){
+      randomChars = randomChars.concat(lower.split(''));
+    }
+    if (upperCase){
+      randomChars = randomChars.concat(upper.split(''));
+    }
+    if (numbers){
+      randomChars = randomChars.concat(nums.split(''));
+    }
+    if (specialChar){
+      randomChars = randomChars.concat(special.split(''));
+    }
+
+    var password = '';
+
+  //random password generator will take the password length as the limiting size
+  for (var i = 0; i <= passwordLength; i++){
+    password += randomChars[Math.floor(Math.random() * randomChars.length)];
   }
-  return suggestedPassword;
+// bada bing bada bam you have a password
+  return password
+
 }
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
+  var generateBtn = document.querySelector("#generate");
+  
+// Write password to the #password input, i changed the password to generateNewPassword because that is what I called it above
+  function writePassword() {
+    var password = generateNewPassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  
+  }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
