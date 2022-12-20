@@ -1,2 +1,2 @@
-# password-challenge3
+# Password Schmassword
 this is challenge three for the bootcamp
