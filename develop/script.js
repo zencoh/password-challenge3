@@ -6,7 +6,7 @@
     while(true){
       passwordLength = prompt("Choose the length of your password between 8 and 128 characters.");
       passwordLength = parseInt(passwordLength);
-      if (passwordLength >= 8 || passwordLength <= 128){
+      if (passwordLength >= 8 && passwordLength <= 128){
         break;
     } else {
         alert("Must choose a number between 8 and 128.")
