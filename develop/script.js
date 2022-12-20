@@ -9,16 +9,16 @@
       if (passwordLength >= 8 && passwordLength <= 128){
         break;
     } else {
-        alert("Must choose a number between 8 and 128.")
+        alert("Please choose a number between 8 and 128.")
         generateNewPassword();
       }
     }
 
   //using ok and cancel as yes or no, returns true or false depending on users choice
-    var lowerCase = confirm("Use lower case letters.");
-    var upperCase = confirm("Use upper case letters.");
-    var numbers = confirm("Use numbers, 0-9.");
-    var specialChar = confirm("Use special characters");
+    var lowerCase = confirm("Do you want to use lower case letters?");
+    var upperCase = confirm("Do you want to use upper case letters?");
+    var numbers = confirm("Do you want to include numbers?");
+    var specialChar = confirm("Do you want to include special characters?");
 
     var lower = 'abcdefghijklmnopqrstuvwxyz';
     var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -27,7 +27,7 @@
 
   //if the user doesnt choose any of the character options then they are reminded and have to start over
     if (!lowerCase && !upperCase && !numbers && !specialChar){
-      alert('Must choose at least 1 character type to use.')
+      alert('You must choose at least 1 character type to use.')
       generateNewPassword()
     }
 
