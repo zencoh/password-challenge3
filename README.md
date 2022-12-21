@@ -7,6 +7,6 @@ This is a password generator I made using javascript. The HTML and CSS was given
 ## Usage
 To create a new password click "generate password", then you will be prompted with how long to make the password, next you will be prompted about which types of characters to include, and finally your password will generate in the box above the "generate password" button.
 
-<!-- Generate your own password here link -->
+Generate your own password here [Generate Password](https://zencoh.github.io/password-schmassword/)
 
-<!-- insert image from webpage -->
+![](assets/images/screenshot-password.PNG)

@@ -2,7 +2,7 @@
  function generateNewPassword() {
     var passwordLength;
 
-  //password requirement between 8-128 chars, not getting this alert when i put in numbers like 7 or 129, without the break then it doesnt work at all
+  //password requirement between 8-128 chars
     while(true){
       passwordLength = prompt("Choose the length of your password between 8 and 128 characters.");
       passwordLength = parseInt(passwordLength);
@@ -53,7 +53,7 @@
   for (var i = 0; i <= passwordLength; i++){
     password += randomChars[Math.floor(Math.random() * randomChars.length)];
   }
-// bada bing bada bam you have a password
+  // bada bing bada bam you have a password
   return password
 
 }
